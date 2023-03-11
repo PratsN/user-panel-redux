@@ -11,6 +11,7 @@ import Modal from "./Modal";
 import "../Styles/UserListing.css";
 
 const UserListing = () => {
+  //fetching the user data using useSelector hook
   const users = useSelector(getUsers);
   // console.log(users.payload.user.users);
 

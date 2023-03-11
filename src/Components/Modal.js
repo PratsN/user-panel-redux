@@ -21,10 +21,13 @@ import Tooltip from "@mui/material/Tooltip";
 import "../Styles/Modal.css";
 
 const Modal = ({ data, id }) => {
+  //UseState hook to manage the state of modal
   const [open, setOpen] = useState(false);
 
+  //Finding user to display there data in modal
   const searchUser = data.find((user) => user.id === id);
 
+  //Created address format to display address
   const address =
     searchUser.address.suite +
     " , " +
@@ -34,8 +37,11 @@ const Modal = ({ data, id }) => {
     " , " +
     searchUser.address.zipcode;
 
+  //Some websites are not in the proper order so creating a variable
+
   const website = "http://www." + searchUser.website;
 
+  //handling the modal open and close
   const handleClickOpen = () => {
     setOpen(true);
   };

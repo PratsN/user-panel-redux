@@ -5,9 +5,11 @@ import axios from "axios";
 import UserListing from "./UserListing";
 
 const Landing = () => {
+  //API to fetch data
   const API_URL = `https://jsonplaceholder.typicode.com/users`;
   const dispatch = useDispatch();
 
+  //Fetching the data using axios
   const fetchUserData = async () => {
     try {
       let response = await axios.get(API_URL);
@@ -17,6 +19,7 @@ const Landing = () => {
     }
   };
 
+  //Using useEffect Hook to render data
   useEffect(() => {
     fetchUserData();
   }, [dispatch]);
