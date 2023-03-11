@@ -1,0 +1,14 @@
+.footer {
+    background: aliceblue;
+    width: 100%;
+    padding: 16px 0px;
+    color: #999;
+    vertical-align: bottom;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.heart {
+    font-size: large;
+    color: red;
+}
