@@ -26,6 +26,7 @@ Working :
   e. Action
 6. In the Action field there is a button "Details". After clicking the button Modal will get open on the screen
 &. Modal will consists of Following fileds
+
   A. Address -> Suit Number , Street , City and Zipcode
   
   B. Phone No.
