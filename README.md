@@ -9,7 +9,7 @@ This is a React+Redux website that allows users to see the data in tabular forma
 Installation and Setup :
 
 1. Clone the repository: git clone https://github.com/PratsN/user-panel-redux.git
-2. Install Dependencies required for website : npm install
+2. Install Dependencies require for website : npm install
 3. Run the development server: npm start
 
 Working :
