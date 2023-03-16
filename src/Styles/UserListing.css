@@ -1,5 +1,27 @@
 .content-section {
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 40px;
+
+}
+
+.serach-filter{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3%;
+}
+
+.serach-box{
+  padding-top: 8px;
+  flex-grow: 1;
+}
+
+.filter-box{
+  padding-top: 20px;
+ 
+}
+
+@media screen and (max-width: 1125px) {
+  .serach-filter {
+    flex-direction: column-reverse;
+  }
 }

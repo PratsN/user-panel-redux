@@ -1,6 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { getUsers } from "../Features/userSlice";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { default as getUsers } from "../Features/userAction";
+import { setFilter } from "../Features/userSlice";
+import SearchUser from "./SeachUser";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,16 +10,72 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Modal from "./Modal";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Box from "@mui/material/Box";
 import "../Styles/UserListing.css";
+import "../Styles/FilterUser.css";
 
 const UserListing = () => {
+  const [name, setName] = useState("");
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   //fetching the user data using useSelector hook
-  const users = useSelector(getUsers);
-  // console.log(users.payload.user.users);
+  const { users } = useSelector((state) => state.users);
+
+  //dropdown functionality
+  const handleChange = (event) => {
+    setName(event.target.value);
+    dispatch(setFilter(event.target.value));
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
   return (
     <>
       <section className="content-section">
+        <Box className="serach-filter">
+          <span className="serach-box">
+            {" "}
+            <SearchUser />
+          </span>
+
+          <span className="filter-box">
+            <FormControl sx={{ m: 1, minWidth: 220 }}>
+              <InputLabel id="demo-controlled-open-select-label">
+                Filter by Name
+              </InputLabel>
+              <Select
+                id="demo-controlled-open-select"
+                open={open}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                value={name}
+                label="Filter by Name"
+                onChange={handleChange}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {users.map((item) => (
+                  <MenuItem key={item.id} value={item.name}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </span>
+        </Box>
         <TableContainer>
           <Table>
             <TableHead>
@@ -30,7 +88,7 @@ const UserListing = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.payload.user.users.map((row) => (
+              {users.map((row) => (
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -43,7 +101,7 @@ const UserListing = () => {
                   <TableCell>{row.email}</TableCell>
                   <TableCell>
                     {" "}
-                    <Modal data={users.payload.user.users} id={row.id} />
+                    <Modal data={users} id={row.id} />
                   </TableCell>
                 </TableRow>
               ))}

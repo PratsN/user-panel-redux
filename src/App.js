@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Landing from "./Components/Landing";
+import UserListing from "./Components/UserListing";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import "./App.css";
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />}></Route>
+          <Route path="/" element={<UserListing />}></Route>
         </Routes>
       </BrowserRouter>
       <Footer />
